@@ -15,17 +15,22 @@ export default {
       xsmall: "1.2rem",
       small: "1.4rem",
       medium: "1.6rem",
-      large: "2.4rem",
-      xlarge: "3.2rem",
+      large: "1.8rem",
+      xlarge: "2rem",
+      xxlarge: "2.4rem",
+      xxxlarge: "3.2rem",
     },
   },
   colors: {
     brand: {
       primary: "#E40F0F",
     },
-    commom: {
+    neutral: {
       white: "#ffffff",
-      black: "#000000",
+      black: "#1D1D1D",
+      gray: "#D5D5D5",
+      darkGray: "#747474",
+      error: "#E40F0F",
     },
     text: {
       primary: "#1D1D1D",
@@ -36,6 +41,7 @@ export default {
   radius: {
     normal: "2px",
     big: "4px",
+    full: "999px",
   },
   transition: {
     default: "0.3s ease-in-out",
