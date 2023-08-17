@@ -13,8 +13,18 @@ export const Container = styled.div`
 
 export const Select = styled(SelectInput)``;
 
-export const AddButton = styled(Button)``;
-export const DeleteButton = styled(Button)``;
+export const AddButton = styled(Button)`
+  width: 100%;
+
+  ${({ theme }) => css`
+    ${theme.breakpoints.tablet} {
+      width: 50%;
+    }
+  `}
+`;
+export const DeleteButton = styled(Button)`
+  margin-left: 0.8rem;
+`;
 
 export const SelectCustomLabel = styled.p`
   ${({ theme }) => css`

@@ -25,7 +25,7 @@ export function useIncrementalSelect({
       setDisableAddition(true);
     }
 
-    append({ name: "", value: "" });
+    append({ label: "", value: "" });
   };
 
   const handleDeleteSelect = (index: number) => remove(index);
