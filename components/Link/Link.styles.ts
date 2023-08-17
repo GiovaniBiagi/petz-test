@@ -1,6 +1,6 @@
 import styled, { DefaultTheme, css } from "styled-components";
 import UseLink from "next/link";
-import { LinkProps } from "./Link";
+import { LinkProps } from "./Link.types";
 
 type StyledButtonProps = Omit<LinkProps, "text" | "href">;
 
@@ -18,7 +18,7 @@ const linkVariants = {
   `,
 };
 
-export const NextLink = styled(UseLink)<StyledButtonProps>`
+export const NextLink = styled(UseLink) <StyledButtonProps>`
   text-decoration: none;
 
   ${({ theme, variant }) => css`

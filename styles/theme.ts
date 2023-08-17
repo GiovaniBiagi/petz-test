@@ -1,3 +1,4 @@
+import { convertHexToRgba } from "@/utils/convertHexToRgba";
 import { Inter } from "@next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,6 +25,7 @@ export default {
   colors: {
     brand: {
       primary: "#E40F0F",
+      secondary: "#DF8686",
     },
     neutral: {
       white: "#ffffff",
@@ -52,6 +54,9 @@ export default {
     fast: "0.1s ease-in-out",
   },
   text: {},
+  utils: {
+    hexToRgba: (hex: string, alpha: number = 1): string => convertHexToRgba(hex, alpha),
+  },
   shadow: {
     normal: "0px 2px 8px rgba(0, 0, 0, 0.25);",
   },

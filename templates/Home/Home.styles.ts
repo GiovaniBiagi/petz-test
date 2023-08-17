@@ -1,7 +1,5 @@
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "@/constants/style.constants";
+import { FULL_SCREEN_HEIGHT } from "@/constants/style.constants";
 import styled, { css } from "styled-components";
-
-const REMAINING_SPACE = 100 - (HEADER_HEIGHT + FOOTER_HEIGHT);
 
 export const Container = styled.section`
   display: flex;
@@ -12,7 +10,7 @@ export const Container = styled.section`
 
 export const Image = styled.img`
   width: 100%;
-  height: ${REMAINING_SPACE}vh;
+  height: ${FULL_SCREEN_HEIGHT}vh;
   object-fit: cover;
 `;
 

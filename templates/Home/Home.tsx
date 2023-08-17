@@ -1,7 +1,6 @@
-import React from "react";
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "@/constants/style.constants";
+import React from 'react'
 
-import * as S from "./Home.styles";
+import * as S from './Home.styles'
 
 export function Home() {
   return (
@@ -12,5 +11,5 @@ export function Home() {
         <S.Title>para ele cuidar bem de você</S.Title>
       </S.TitleContainer>
     </S.Container>
-  );
+  )
 }

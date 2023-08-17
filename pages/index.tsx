@@ -1,11 +1,11 @@
 export default function Index() {
-  return <></>;
+  return <></>
 }
 
 export async function getStaticProps() {
   return {
     redirect: {
-      destination: "/home",
-    },
-  };
+      destination: '/home'
+    }
+  }
 }

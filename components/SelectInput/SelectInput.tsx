@@ -1,31 +1,23 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef } from 'react'
 
-import * as S from "./SelectInput.styles";
-import { useSelectInput } from "./useSelectInput";
-
-export type Options = {
-  value: string;
-  label: string;
-};
-
-export type SelectInputProps = {
-  options: Options[];
-  onChange?: (value: string) => void;
-  error?: string;
-  label?: string;
-  placeholder?: string;
-  id: string;
-};
+import * as S from './SelectInput.styles'
+import { useSelectInput } from './useSelectInput'
+import { SelectInputProps } from './SelectInput.types'
 
 export const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
-  ({ options, placeholder, error, onChange, id, label }, ref) => {
+  ({ options, placeholder, error, onChange, id, label, disabled }, ref) => {
     const { isOpen, handleToggleSelect, onOptionChange, value } =
-      useSelectInput();
+      useSelectInput()
 
     return (
       <S.Container>
         {label ? <S.Label htmlFor={id}>{label}</S.Label> : null}
-        <S.Button onClick={() => handleToggleSelect()} error={!!error}>
+        <S.Button
+          onClick={() => handleToggleSelect()}
+          error={!!error}
+          disabled={disabled}
+          data-testid={`select-input-${id}`}
+        >
           <S.Input
             id={id}
             placeholder={placeholder}
@@ -40,10 +32,11 @@ export const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
               <S.ListItem
                 key={option.value}
                 value={option.value}
+                data-testid={`select-input-option-${id}`}
                 onClick={() => {
-                  onOptionChange(option.label);
-                  onChange && onChange(option.value);
-                  handleToggleSelect();
+                  onOptionChange(option.label)
+                  onChange && onChange(option.value)
+                  handleToggleSelect()
                 }}
               >
                 {option.label}
@@ -55,8 +48,8 @@ export const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
             </S.EmptyState>
           )}
         </S.List>
-        {error && <S.Error>{error}</S.Error>}
+        {error && <S.Error data-testid="select-input-error">{error}</S.Error>}
       </S.Container>
-    );
+    )
   }
-);
+)

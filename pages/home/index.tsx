@@ -1,7 +1,7 @@
-import Head from "next/head";
-import { Home as HomeTemplate } from "@/templates/Home/Home";
-import { Layout } from "@/templates/Layout/Layout";
-import { ReactElement } from "react";
+import Head from 'next/head'
+import { Home as HomeTemplate } from '@/templates/Home/Home'
+import { Layout } from '@/templates/Layout/Layout'
+import { ReactElement } from 'react'
 
 export default function Home() {
   return (
@@ -17,9 +17,9 @@ export default function Home() {
       </Head>
       <HomeTemplate />
     </>
-  );
+  )
 }
 
 Home.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+  return <Layout>{page}</Layout>
+}

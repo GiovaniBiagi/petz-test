@@ -1,11 +1,7 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef } from 'react'
 
-import * as S from "./TextInput.styles";
-
-type TextInputProps = {
-  error?: string;
-  label: string;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+import * as S from './TextInput.styles'
+import { TextInputProps } from './TextInput.types'
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   ({ error, label, id, ...props }, ref) => {
@@ -15,8 +11,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         <S.InputContainer error={!!error}>
           <S.Input id={id} {...props} ref={ref} />
         </S.InputContainer>
-        {error && <S.Error>{error}</S.Error>}
+        {error && <S.Error data-testid="text-input-error">{error}</S.Error>}
       </S.Container>
-    );
+    )
   }
-);
+)
