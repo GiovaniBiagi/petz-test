@@ -12,11 +12,12 @@ type StyledButtonProps = {
 
 export const Container = styled.div`
   position: relative;
+  flex: 1;
 `;
 
 export const Button = styled.button.attrs({
   type: "button",
-})<StyledButtonProps>`
+}) <StyledButtonProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
