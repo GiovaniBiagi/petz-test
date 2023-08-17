@@ -8,9 +8,18 @@ export const Container = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 2.4rem;
+
+  ${({ theme }) => css`
+    ${theme.breakpoints.tablet} {
+      padding: 3.2rem 0;
+    }
+  `}
+ 
 `;
 
 export const Title = styled.h1`
+  text-align: center;
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.xxlarge};
     color: ${theme.colors.text.primary};
@@ -19,7 +28,14 @@ export const Title = styled.h1`
 `;
 
 export const FormContainer = styled.div`
-  padding: 2.4rem;
+  width: 100%;
+  max-width: 60rem;
+
+  ${({ theme }) => css`
+    ${theme.breakpoints.tablet} {
+      padding: 0 2.4rem;
+    }
+  `}
 `;
 
 export const ScheduleForm = styled(AppointmentSchedulingForm)``;
