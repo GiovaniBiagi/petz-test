@@ -4,10 +4,20 @@ import { ThemeProvider } from "styled-components";
 import theme from "@/styles/theme";
 import GlobalStyles from "@/styles/global";
 
-function MyApp({ Component, pageProps }: AppProps) {
+interface MyAppProps extends AppProps {
+  Component: {
+    getLayout?: (page: JSX.Element) => JSX.Element;
+  } & typeof import("react").Component;
+}
+
+function MyApp({ Component, pageProps }: MyAppProps) {
   return (
     <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
+      {Component.getLayout ? (
+        Component.getLayout(<Component {...pageProps} />)
+      ) : (
+        <Component {...pageProps} />
+      )}
       <GlobalStyles />
     </ThemeProvider>
   );
