@@ -31,7 +31,7 @@ export const Button = styled.button.attrs({
   type: "button",
 })<StyledButtonProps>`
   ${({ theme, variant, icon }) => css`
-    padding: 1.2rem 2.4rem;
+    padding: 1rem 1.6rem;
     border-radius: ${theme.radius.full};
     font-weight: ${theme.font.bold};
     font-size: ${theme.font.sizes.small};

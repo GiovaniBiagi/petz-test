@@ -1,5 +1,5 @@
-import React, { ChangeEvent } from "react";
-import { Control, FieldValues, useFieldArray, useForm } from "react-hook-form";
+import React from "react";
+import { Control, FieldValues } from "react-hook-form";
 
 import * as S from "./IncrementalSelect.styles";
 import { useIncrementalSelect } from "./useIncrementalSelect";
@@ -10,10 +10,7 @@ type IncrementalSelectProps = {
   label: string;
   control: Control<FieldValues>;
   options: SelectInputProps["options"];
-  onChange?: (
-    value: string | number | ChangeEvent<HTMLSelectElement>,
-    index: number
-  ) => void;
+  onChange?: (value: string, index: number) => void;
 };
 
 export function IncrementalSelect({

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 import { Button } from "@/components/Button/Button";
-import { ScheduleAppointmentForm } from "@/components/ScheduleAppointmentForm/ScheduleAppointmentForm";
+import { AppointmentSchedulingForm } from "@/components/AppointmentSchedulingForm/AppointmentSchedulingForm";
 
 export const Container = styled.section`
   display: flex;
@@ -22,6 +22,6 @@ export const FormContainer = styled.div`
   padding: 2.4rem;
 `;
 
-export const ScheduleForm = styled(ScheduleAppointmentForm)``;
+export const ScheduleForm = styled(AppointmentSchedulingForm)``;
 
 export const SubmitButton = styled(Button)``;

@@ -1,7 +1,7 @@
 import styled, { DefaultTheme, css } from "styled-components";
 
 type StyledContainerProps = {
-  hasError: boolean;
+  error: boolean;
 };
 
 const inputVariants = {
@@ -19,14 +19,14 @@ export const InputContainer = styled.div<StyledContainerProps>`
   height: 4rem;
   padding: 0 1.6rem;
 
-  ${({ theme, hasError }) => css`
+  ${({ theme, error }) => css`
     border: 1px solid ${theme.colors.neutral.gray};
     border-radius: 0.8rem;
 
     &:focus-within {
       border-color: ${theme.colors.brand.primary};
     }
-    ${hasError && inputVariants.error(theme)}
+    ${error && inputVariants.error(theme)}
   `}
 `;
 

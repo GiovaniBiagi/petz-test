@@ -12,7 +12,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <S.Container>
         {label ? <S.Label htmlFor={id}>{label}</S.Label> : null}
-        <S.InputContainer hasError={!!error}>
+        <S.InputContainer error={!!error}>
           <S.Input id={id} {...props} ref={ref} />
         </S.InputContainer>
         {error && <S.Error>{error}</S.Error>}

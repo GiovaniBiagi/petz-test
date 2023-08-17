@@ -13,7 +13,9 @@ export type SelectInputProps = {
   onChange?: (value: string) => void;
   error?: string;
   label?: string;
-} & React.SelectHTMLAttributes<HTMLSelectElement>;
+  placeholder?: string;
+  id: string;
+};
 
 export function SelectInput({
   options,
@@ -21,7 +23,7 @@ export function SelectInput({
   error,
   onChange,
   id,
-  label,
+  label
 }: SelectInputProps) {
   const { isOpen, handleToggleSelect, onOptionChange, value } =
     useSelectInput();
@@ -29,7 +31,7 @@ export function SelectInput({
   return (
     <S.Container>
       {label ? <S.Label htmlFor={id}>{label}</S.Label> : null}
-      <S.Button onClick={() => handleToggleSelect()} hasError={!!error}>
+      <S.Button onClick={() => handleToggleSelect()} error={!!error}>
         <S.Input id={id} placeholder={placeholder} defaultValue={value} />
         {isOpen ? <S.ChevronUp /> : <S.ChevronDown />}
       </S.Button>

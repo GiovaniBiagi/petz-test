@@ -1,43 +1,16 @@
-import React, { ChangeEvent } from "react";
+import { useAppointmentSchedulingForm } from "./useAppointmentSchedulingForm";
 
-import * as S from "./ScheduleAppointmentForm.styles";
-import { useForm, useFormState } from "react-hook-form";
+import * as S from "./AppointmentSchedulingForm.styles";
 
-import { Options } from "@/components/SelectInput/SelectInput";
-
-type FormValues = {
-  name: string;
-  lastName: string;
-  region: string | ChangeEvent<HTMLSelectElement>;
-  city: string | ChangeEvent<HTMLSelectElement>;
-  team: Options[];
+type AppointmentSchedulingFormProps = {
+  onSubmit: (data: any) => void;
 };
 
-type ScheduleAppointmentFormProps = {
-  onSubmit: (data: FormValues) => void;
-};
-
-export function ScheduleAppointmentForm({
+export function AppointmentSchedulingForm({
   onSubmit,
-}: ScheduleAppointmentFormProps) {
-  const { register, handleSubmit, setValue, control } = useForm<FormValues>({
-    defaultValues: {
-      name: "",
-      lastName: "",
-      region: "",
-      city: "",
-      team: [
-        {
-          value: "",
-          label: "",
-        },
-      ],
-    },
-  });
-
-  const { errors } = useFormState({
-    control,
-  });
+}: AppointmentSchedulingFormProps) {
+  const { errors, control, handleSubmit, register, setValue } =
+    useAppointmentSchedulingForm();
 
   return (
     <S.Form onSubmit={handleSubmit(onSubmit)}>
@@ -87,7 +60,6 @@ export function ScheduleAppointmentForm({
       />
       <S.Select
         id="city"
-        name="city"
         label="Cidade"
         placeholder="Selecione sua cidade"
         onChange={(value) => setValue("city", value)}
@@ -123,11 +95,18 @@ export function ScheduleAppointmentForm({
         />
       </S.TeamContainer>
 
-      <S.SubmitButton
-        type="submit"
-        label="Concluir Agendamento"
-        variant="primary"
-      />
+      <S.Divider />
+
+      <S.TotalScheduleDescription />
+
+      <S.SubmitContainer>
+        <S.TotalValue>Valor Total: R$ 72,10</S.TotalValue>
+        <S.SubmitButton
+          type="submit"
+          label="Concluir Agendamento"
+          variant="primary"
+        />
+      </S.SubmitContainer>
     </S.Form>
   );
 }

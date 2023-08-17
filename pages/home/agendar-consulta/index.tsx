@@ -1,13 +1,13 @@
 import { SubHeader } from "@/components/SubHeader/SubHeader";
 import { Layout } from "@/templates/Layout/Layout";
-import { ScheduleAppointment as ScheduleAppointmentTemplate } from "@/templates/ScheduleAppointment/ScheduleAppointment";
+import { AppointmentScheduling as AppointmentSchedulingTemplate } from "@/templates/AppointmentScheduling/AppointmentScheduling";
 import { ReactElement } from "react";
 
-export default function ScheduleAppointment() {
-  return <ScheduleAppointmentTemplate />;
+export default function AppointmentScheduling() {
+  return <AppointmentSchedulingTemplate />;
 }
 
-ScheduleAppointment.getLayout = function getLayout(page: ReactElement) {
+AppointmentScheduling.getLayout = function getLayout(page: ReactElement) {
   return (
     <Layout>
       <SubHeader

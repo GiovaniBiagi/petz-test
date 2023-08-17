@@ -7,7 +7,7 @@ type StyledListProps = {
 };
 
 type StyledButtonProps = {
-  hasError: boolean;
+  error: boolean;
 };
 
 export const Container = styled.div`
@@ -25,11 +25,12 @@ export const Button = styled.button.attrs({
   height: 4.5rem;
   border-radius: 0.8rem;
   padding: 0 1rem;
-  ${({ theme, hasError }) => css`
+  
+  ${({ theme, error }) => css`
     background-color: ${theme.colors.neutral.white};
     border: 1px solid ${theme.colors.neutral.gray};
 
-    ${hasError &&
+    ${error &&
     css`
       border-color: ${theme.colors.neutral.error};
     `}
@@ -46,6 +47,7 @@ export const Input = styled.input`
   outline: none;
   pointer-events: none;
   border: none;
+
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.small};
     font-weight: ${theme.font.medium};
