@@ -11,6 +11,13 @@ export const Article = styled.article`
   gap: 2rem;
   margin: 2rem 0;
   max-width: 42.5rem;
+  padding: 0 1.6rem;
+
+  ${({ theme }) => css`
+    ${theme.breakpoints.tablet} {
+      padding: 0;
+    }
+  `}
 `;
 
 export const Title = styled.h1`
