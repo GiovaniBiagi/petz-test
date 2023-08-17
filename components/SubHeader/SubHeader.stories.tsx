@@ -10,7 +10,7 @@ const meta: Meta<typeof SubHeader> = {
 export default meta;
 type Story = StoryObj<typeof SubHeader>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     title: "Lorem Ipsum",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

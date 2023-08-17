@@ -10,7 +10,7 @@ export const Header = styled.header`
   justify-content: space-between;
   height: ${HEADER_HEIGHT}vh;
   padding: 0 1.2rem;
-  
+
   ${({ theme }) => css`
   ${theme.breakpoints.tablet} {
       padding: 0 5.6rem;

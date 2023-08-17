@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { DefaultTheme, css } from "styled-components";
 
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
 
@@ -9,6 +9,16 @@ type StyledListProps = {
 type StyledButtonProps = {
   error: boolean;
 };
+
+const buttonVariants = {
+  disabled: () => css`
+    cursor: not-allowed;
+    background-color: ${({ theme }) => theme.colors.neutral.gray};
+  `,
+  error: (theme: DefaultTheme) => css`
+    border-color: ${theme.colors.neutral.error};
+  `,
+}
 
 export const Container = styled.div`
   position: relative;
@@ -26,15 +36,13 @@ export const Button = styled.button.attrs({
   height: 4.5rem;
   border-radius: 0.8rem;
   padding: 0 1rem;
-  
-  ${({ theme, error }) => css`
+
+  ${({ theme, error, disabled }) => css`
     background-color: ${theme.colors.neutral.white};
     border: 1px solid ${theme.colors.neutral.gray};
 
-    ${error &&
-    css`
-      border-color: ${theme.colors.neutral.error};
-    `}
+    ${error && buttonVariants.error(theme)}
+    ${disabled && buttonVariants.disabled()}
 
     svg {
       color: ${theme.colors.neutral.darkGray};
@@ -48,6 +56,7 @@ export const Input = styled.input`
   outline: none;
   pointer-events: none;
   border: none;
+  background-color: transparent;
 
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.small};
@@ -62,6 +71,8 @@ export const List = styled.ul<StyledListProps>`
     border: 1px solid ${theme.colors.neutral.gray};
     display: ${visible ? "block" : "none"};
   `}
+  max-height: 15rem;
+  overflow-y: auto;
   position: absolute;
   top: 90%;
   left: 0;

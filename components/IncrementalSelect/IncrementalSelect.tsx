@@ -1,30 +1,21 @@
-import React from "react";
-import { Control, FieldValues } from "react-hook-form";
+import React from 'react'
 
-import * as S from "./IncrementalSelect.styles";
-import { useIncrementalSelect } from "./useIncrementalSelect";
-import { SelectInputProps } from "@/components/SelectInput/SelectInput";
-
-type IncrementalSelectProps = {
-  name: string;
-  label: string;
-  control: Control<FieldValues>;
-  options: SelectInputProps["options"];
-  onChange?: (value: string, index: number) => void;
-};
+import * as S from './IncrementalSelect.styles'
+import { useIncrementalSelect } from './useIncrementalSelect'
+import { IncrementalSelectProps } from './IncrementalSelect.types'
 
 export function IncrementalSelect({
   name,
   label,
   control,
   options,
-  onChange,
+  onChange
 }: IncrementalSelectProps) {
   const { selectList, disableAddition, handleAddSelect, handleDeleteSelect } =
     useIncrementalSelect({
       control,
-      fieldPrefix: name,
-    });
+      fieldPrefix: name
+    })
 
   return (
     <S.Container>
@@ -32,6 +23,8 @@ export function IncrementalSelect({
         <S.SelectInputContainer key={select.id}>
           <S.SelectCustomLabel>{`${label} ${index + 1}`}</S.SelectCustomLabel>
           <S.Select
+            placeholder="Selecione um pokémon"
+            data-testid="incremental-select"
             onChange={(value) => onChange && onChange(value, index)}
             id="pokemon"
             options={options}
@@ -40,6 +33,7 @@ export function IncrementalSelect({
             <S.DeleteButton
               label=""
               icon={<S.TrashIcon />}
+              data-testid="delete-select"
               onClick={() => handleDeleteSelect(index)}
             />
           )}
@@ -50,8 +44,9 @@ export function IncrementalSelect({
         onClick={handleAddSelect}
         variant="secondary"
         label="Adicionar novo pokémon ao time"
+        data-testid="add-select"
         icon={<S.PlusIcon />}
       />
     </S.Container>
-  );
+  )
 }

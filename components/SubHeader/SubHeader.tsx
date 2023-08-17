@@ -1,11 +1,7 @@
-import React from "react";
+import React from 'react'
 
-import * as S from "./SubHeader.styles";
-
-export type SubHeaderProps = {
-  title: string;
-  subtitle: string;
-};
+import * as S from './SubHeader.styles'
+import { SubHeaderProps } from './SubHeader.types'
 
 export function SubHeader({ title, subtitle }: SubHeaderProps) {
   return (
@@ -14,5 +10,5 @@ export function SubHeader({ title, subtitle }: SubHeaderProps) {
       <S.Title>{title}</S.Title>
       <S.SubTitle>{subtitle}</S.SubTitle>
     </S.Container>
-  );
+  )
 }

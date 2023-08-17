@@ -74,8 +74,6 @@ export const SubmitContainer = styled.div`
 
 export const SubmitButton = styled(Button)``;
 
-//
-
 export const TotalContainer = styled.section`
   display: flex;
   flex-direction: column;

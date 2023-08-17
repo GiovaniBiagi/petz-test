@@ -1,12 +1,7 @@
-import React from "react";
+import React from 'react'
 
-import * as S from "./Button.styles";
-
-export type ButtonProps = {
-  label: string;
-  variant?: "primary" | "secondary";
-  icon?: React.ReactNode;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+import * as S from './Button.styles'
+import { ButtonProps } from './Button.types'
 
 export function Button({
   onClick,
@@ -20,5 +15,5 @@ export function Button({
       {label}
       {icon ? icon : null}
     </S.Button>
-  );
+  )
 }

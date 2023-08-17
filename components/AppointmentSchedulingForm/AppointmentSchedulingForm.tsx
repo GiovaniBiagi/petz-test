@@ -1,16 +1,26 @@
-import { useAppointmentSchedulingForm } from "./useAppointmentSchedulingForm";
+import { useAppointmentSchedulingForm } from './useAppointmentSchedulingForm'
 
-import * as S from "./AppointmentSchedulingForm.styles";
-
-type AppointmentSchedulingFormProps = {
-  onSubmit: (data: any) => void;
-};
+import * as S from './AppointmentSchedulingForm.styles'
+import { AppointmentSchedulingFormProps } from './AppointmentSchedulingForm.types'
 
 export function AppointmentSchedulingForm({
   onSubmit,
+  availableDates,
+  regions,
+  pokemons,
+  fetching
 }: AppointmentSchedulingFormProps) {
-  const { errors, control, handleSubmit, register, setValue, values } =
-    useAppointmentSchedulingForm();
+  const {
+    errors,
+    control,
+    handleSubmit,
+    register,
+    setValue,
+    values,
+    cities,
+    availableTime,
+    totalValues
+  } = useAppointmentSchedulingForm({ pokemons })
 
   return (
     <S.Form>
@@ -20,8 +30,9 @@ export function AppointmentSchedulingForm({
           id="name"
           label="Nome"
           placeholder="Digite seu nome"
-          error={errors.name?.message as string}
-          {...register("name", { required: "O campo nome é obrigatório" })}
+          error={errors.name && errors.name.message}
+          data-testid="name"
+          {...register('name', { required: 'O campo nome é obrigatório' })}
         />
 
         <S.Input
@@ -29,34 +40,39 @@ export function AppointmentSchedulingForm({
           id="lastName"
           label="Sobrenome"
           placeholder="Digite seu sobrenome"
-          error={errors.lastName?.message as string}
-          {...register("lastName", {
-            required: "O campo sobrenome é obrigatório",
+          error={errors.lastName && errors.lastName.message}
+          data-testid="lastName"
+          {...register('lastName', {
+            required: 'O campo sobrenome é obrigatório'
           })}
         />
       </S.FormInputContainer>
       <S.FormInputContainer>
         <S.Select
-          {...register("region", {
-            required: "O campo região é obrigatório",
+          {...register('region', {
+            required: 'O campo região é obrigatório'
           })}
           id="region"
           label="Região"
-          error={errors.region?.message as string}
+          error={errors.region && errors.region.message}
           placeholder="Selecione sua região"
-          onChange={(value) => setValue("region", value)}
-          options={[]}
+          onChange={(value) => setValue('region', value)}
+          options={regions.map((region) => ({
+            label: region,
+            value: region
+          }))}
         />
         <S.Select
-          {...register("city", {
-            required: "O campo região é obrigatório",
+          {...register('city', {
+            required: 'O campo região é obrigatório'
           })}
           id="city"
           label="Cidade"
           placeholder="Selecione sua cidade"
-          error={errors.city?.message as string}
-          onChange={(value) => setValue("city", value)}
-          options={[]}
+          error={errors.city && errors.city.message}
+          onChange={(value) => setValue('city', value)}
+          options={cities}
+          disabled={!values.region}
         />
       </S.FormInputContainer>
 
@@ -66,12 +82,45 @@ export function AppointmentSchedulingForm({
         <S.IncrementalSelect
           name="team"
           control={control}
-          options={[]}
+          options={pokemons.map((pokemon) => ({
+            label: pokemon.name,
+            value: pokemon.name
+          }))}
           label="Pokémon"
           onChange={(value, index) => setValue(`team.${index}.value`, value)}
         />
       </S.TeamContainer>
 
+      <S.FormInputContainer>
+        <S.Select
+          {...register('date', {
+            required: 'Selecione uma data de agendamento'
+          })}
+          id="date"
+          label="Data para o atendimento"
+          error={errors.date && errors.date.message}
+          placeholder="Slecione uma data"
+          data-testid="date"
+          onChange={(value) => setValue('date', value)}
+          options={availableDates.map((date) => ({
+            label: date,
+            value: date
+          }))}
+        />
+        <S.Select
+          {...register('time', {
+            required: 'Selecione o horário de atendimento'
+          })}
+          id="time"
+          label="Horário de atendimento"
+          placeholder="Selecione um horário"
+          error={errors.time && errors.time.message}
+          data-testid="time"
+          onChange={(value) => setValue('time', value)}
+          options={availableTime}
+          disabled={!values.date}
+        />
+      </S.FormInputContainer>
       <S.Divider />
 
       <S.TotalContainer>
@@ -79,21 +128,21 @@ export function AppointmentSchedulingForm({
           <S.TotalItemDescription>
             Número de pokémons a serem atendidos:
           </S.TotalItemDescription>
-          <S.TotalItemValue>01</S.TotalItemValue>
+          <S.TotalItemValue>{totalValues.patients}</S.TotalItemValue>
         </S.TotalItemContainer>
         <S.TotalItemContainer>
           <S.TotalItemDescription>
             Atendimento unitário por pokémon:
           </S.TotalItemDescription>
-          <S.TotalItemValue>R$ 70,00</S.TotalItemValue>
+          <S.TotalItemValue>{totalValues.pricePerPatient}</S.TotalItemValue>
         </S.TotalItemContainer>
         <S.TotalItemContainer>
           <S.TotalItemDescription>Subtotal:</S.TotalItemDescription>
-          <S.TotalItemValue>R$ 70,00</S.TotalItemValue>
+          <S.TotalItemValue>{totalValues.subtotal}</S.TotalItemValue>
         </S.TotalItemContainer>
         <S.TotalItemContainer>
           <S.TotalItemDescription>Taxa geracional*:</S.TotalItemDescription>
-          <S.TotalItemValue>R$ 2,10</S.TotalItemValue>
+          <S.TotalItemValue>{totalValues.taxValue}</S.TotalItemValue>
         </S.TotalItemContainer>
 
         <S.TaxesHelperText>
@@ -103,15 +152,16 @@ export function AppointmentSchedulingForm({
       </S.TotalContainer>
 
       <S.SubmitContainer>
-        <S.TotalValue>Valor Total: R$ 72,10</S.TotalValue>
+        <S.TotalValue>Valor Total: {totalValues.total}</S.TotalValue>
         <S.SubmitButton
           type="submit"
           label="Concluir Agendamento"
           variant="primary"
           onClick={handleSubmit(onSubmit)}
-          disabled={values.team.some((team) => !team.value)}
+          data-testid="submit"
+          disabled={values.team.some((team) => !team.value) || fetching}
         />
       </S.SubmitContainer>
     </S.Form>
-  );
+  )
 }

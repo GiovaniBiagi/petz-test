@@ -1,5 +1,5 @@
 import styled, { DefaultTheme, css } from "styled-components";
-import { ButtonProps } from "./Button";
+import { ButtonProps } from "./Button.types";
 
 type StyledButtonProps = Omit<ButtonProps, "label">;
 

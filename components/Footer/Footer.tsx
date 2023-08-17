@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-import * as S from "./Footer.styles";
+import * as S from './Footer.styles'
 
 export function Footer() {
   return (
@@ -9,5 +9,5 @@ export function Footer() {
         Todas as marcas e ilustrações utilizadas são de seus resepctivos donos.
       </S.FooterText>
     </S.Footer>
-  );
+  )
 }

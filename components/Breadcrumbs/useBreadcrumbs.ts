@@ -1,15 +1,6 @@
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
 import { useRouter } from "next/router";
-
-type Breadcrumb = {
-  path: string;
-  text: string;
-  isLast: boolean;
-};
-
-type Breadcrumbs = {
-  breadcrumbs: Breadcrumb[];
-};
+import { Breadcrumbs } from "./Breadcrumbs.types";
 
 export const useBreadcrumbs = (): Breadcrumbs => {
   const router = useRouter();

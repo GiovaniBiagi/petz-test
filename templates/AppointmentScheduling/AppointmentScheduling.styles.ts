@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 import { Button } from "@/components/Button/Button";
 import { AppointmentSchedulingForm } from "@/components/AppointmentSchedulingForm/AppointmentSchedulingForm";
+import { FeedbackCard as StyledFeedbackCard } from "@/components/FeedbackCard/FeedbackCard";
 
 export const Container = styled.section`
   display: flex;
@@ -15,7 +16,7 @@ export const Container = styled.section`
       padding: 3.2rem 0;
     }
   `}
- 
+
 `;
 
 export const Title = styled.h1`
@@ -37,6 +38,8 @@ export const FormContainer = styled.div`
     }
   `}
 `;
+
+export const FeedbackCard = styled(StyledFeedbackCard)``;
 
 export const ScheduleForm = styled(AppointmentSchedulingForm)``;
 
