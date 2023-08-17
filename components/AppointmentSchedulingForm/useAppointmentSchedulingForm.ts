@@ -2,7 +2,7 @@ import { useForm, useFormState } from "react-hook-form";
 import { Options } from "@/components/SelectInput/SelectInput";
 
 export type AppointmentSchedulingFormValues = {
-  name: string;
+  name?: string;
   lastName: string;
   region: string;
   city: string;
@@ -10,7 +10,7 @@ export type AppointmentSchedulingFormValues = {
 };
 
 export const useAppointmentSchedulingForm = () => {
-  const { register, handleSubmit, setValue, control } = useForm({
+  const { register, handleSubmit, setValue, control, getValues } = useForm<AppointmentSchedulingFormValues>({
     defaultValues: {
       name: "",
       lastName: "",
@@ -35,5 +35,7 @@ export const useAppointmentSchedulingForm = () => {
     handleSubmit,
     setValue,
     errors,
+    getValues,
+    values: getValues(),
   };
 };
