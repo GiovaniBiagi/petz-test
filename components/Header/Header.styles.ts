@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { Logo as StyledLogo } from "@/components/Logo/Logo";
 import { Link as StyledLink } from "@/components/Link/Link";
@@ -9,7 +9,13 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   height: ${HEADER_HEIGHT}vh;
-  padding: 0 5.6rem;
+  padding: 0 1.2rem;
+  
+  ${({ theme }) => css`
+  ${theme.breakpoints.tablet} {
+      padding: 0 5.6rem;
+    }
+  `}
 `;
 
 export const Nav = styled.nav``;
@@ -18,7 +24,11 @@ export const Menu = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 3rem;
+  ${({ theme }) => css`
+  ${theme.breakpoints.tablet} {
+      gap: 3rem;
+    }
+  `}
 `;
 
 export const MenuItem = styled.li`

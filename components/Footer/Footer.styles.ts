@@ -1,5 +1,5 @@
 import { FOOTER_HEIGHT } from "@/constants/style.constants";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Footer = styled.footer`
   display: flex;
@@ -10,7 +10,11 @@ export const Footer = styled.footer`
 `;
 
 export const FooterText = styled.p`
-  color: ${({ theme }) => theme.colors.neutral.white};
-  font-size: ${({ theme }) => theme.font.sizes.small};
-  font-weight: ${({ theme }) => theme.font.normal};
+  text-align: center;
+
+  ${({ theme }) => css`
+    color: ${theme.colors.neutral.white};
+    font-size: ${theme.font.sizes.small};
+    font-weight: ${theme.font.normal};
+  `}
 `;

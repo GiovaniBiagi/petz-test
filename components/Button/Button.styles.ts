@@ -19,24 +19,30 @@ const buttonVariants = {
       filter: invert();
     }
   `,
+  disabled: () => css`
+    cursor: not-allowed;
+    opacity: 0.5;
+  `,
   icon: () => css`
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.8rem;
+    white-space: nowrap;
   `,
 };
 
 export const Button = styled.button.attrs({
   type: "button",
-})<StyledButtonProps>`
-  ${({ theme, variant, icon }) => css`
-    padding: 1.2rem 2.4rem;
+}) <StyledButtonProps>`
+  ${({ theme, variant, icon, disabled }) => css`
+    padding: 1rem 1.6rem;
     border-radius: ${theme.radius.full};
     font-weight: ${theme.font.bold};
     font-size: ${theme.font.sizes.small};
 
     ${variant && buttonVariants[variant](theme)};
+    ${disabled && buttonVariants["disabled"]()};
     ${icon && buttonVariants["icon"]()};
   `}
 `;
