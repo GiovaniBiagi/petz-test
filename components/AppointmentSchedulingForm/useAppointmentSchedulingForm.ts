@@ -87,7 +87,7 @@ export const useAppointmentSchedulingForm = ({ pokemons }: UseAppointmentSchedul
         total: formatCurrency(total),
       });
     }
-  }, [team])
+  }, [team, pokemons])
 
   const handleGetCitiesByRegion = async (region: string) => {
     try {
