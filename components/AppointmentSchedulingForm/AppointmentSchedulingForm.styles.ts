@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
-import { TextInput } from "@/components/TextInput/TextInput";
-import { SelectInput } from "@/components/SelectInput/SelectInput";
+import TextInput from "@/components/TextInput/TextInput";
+import SelectInput from "@/components/SelectInput/SelectInput";
 import { Button } from "@/components/Button/Button";
 import { IncrementalSelect as StyledIncrementalSelect } from "@/components/IncrementalSelect/IncrementalSelect";
 
