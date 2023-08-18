@@ -4,8 +4,11 @@ import * as S from './SelectInput.styles'
 import { useSelectInput } from './useSelectInput'
 import { SelectInputProps } from './SelectInput.types'
 
-export const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
-  ({ options, placeholder, error, onChange, id, label, disabled }, ref) => {
+export default forwardRef<HTMLInputElement, SelectInputProps>(
+  function SelectInput(
+    { options, placeholder, error, onChange, id, label, disabled },
+    ref
+  ) {
     const { isOpen, handleToggleSelect, onOptionChange, value } =
       useSelectInput()
 

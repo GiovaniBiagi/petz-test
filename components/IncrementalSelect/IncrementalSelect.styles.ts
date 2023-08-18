@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { FiPlus, FiTrash } from "react-icons/fi";
 
-import { SelectInput } from "@/components/SelectInput/SelectInput";
+import SelectInput from "@/components/SelectInput/SelectInput";
 import { Button } from "@/components/Button/Button";
 
 export const Container = styled.div`
