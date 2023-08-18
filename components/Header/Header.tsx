@@ -1,23 +1,23 @@
-import React from "react";
+import React from 'react'
 
-import * as S from "./Header.styles";
+import * as S from './Header.styles'
 
-import { LinkProps } from "@/components/Link/Link";
+import { LinkProps } from '@/components/Link/Link.types'
 
-type NavigationProps = LinkProps[];
+type NavigationProps = LinkProps[]
 
 const NAVIGATION_ITEMS: NavigationProps = [
   {
-    href: "/home/quem-somos",
-    text: "Quem Somos",
-    variant: "secondary",
+    href: '/home/quem-somos',
+    text: 'Quem Somos',
+    variant: 'secondary'
   },
   {
-    href: "/home/agendar-consulta",
-    text: "Agendar Consulta",
-    variant: "primary",
-  },
-];
+    href: '/home/agendar-consulta',
+    text: 'Agendar Consulta',
+    variant: 'primary'
+  }
+]
 
 export function Header() {
   return (
@@ -33,5 +33,5 @@ export function Header() {
         </S.Menu>
       </S.Nav>
     </S.Header>
-  );
+  )
 }
