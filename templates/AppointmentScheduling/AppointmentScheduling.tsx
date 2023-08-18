@@ -7,11 +7,10 @@ import { AppointmentSchedulingPageProps } from '@/pages/home/agendar-consulta'
 export type AppointmentSchedulingTemplateProps = AppointmentSchedulingPageProps
 
 export function AppointmentScheduling({
-  availableScheduleDates,
   pokemons,
   regions
 }: AppointmentSchedulingTemplateProps) {
-  const { onSubmit, error, success, fetching } =
+  const { onSubmit, error, success, fetching, availableDates } =
     useAppointmentSchedulingTemplate()
   return (
     <S.Container>
@@ -41,7 +40,7 @@ export function AppointmentScheduling({
           <S.FormContainer>
             <S.ScheduleForm
               onSubmit={onSubmit}
-              availableDates={availableScheduleDates}
+              availableDates={availableDates}
               pokemons={pokemons}
               regions={regions}
               fetching={fetching}

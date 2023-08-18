@@ -3,7 +3,6 @@ import { ReactElement } from 'react'
 import { SubHeader } from '@/components/SubHeader/SubHeader'
 import { Layout } from '@/templates/Layout/Layout'
 import { AppointmentScheduling as AppointmentSchedulingTemplate } from '@/templates/AppointmentScheduling/AppointmentScheduling'
-import { getAvailableDates, AvailableScheduleDate } from '@/services/schedule'
 import { getPokemonByName, getPokemons, getRegions } from '@/services/pokemon'
 import { transformPokemonGeneration } from '@/utils/transformPokemonGeneration'
 import { Pokemon } from '@/types/Pokemon'
@@ -11,7 +10,6 @@ import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 import Head from 'next/head'
 
 export type AppointmentSchedulingPageProps = {
-  availableScheduleDates: AvailableScheduleDate
   regions: string[]
   pokemons: Pokemon[]
 }
@@ -47,9 +45,8 @@ AppointmentScheduling.getLayout = function getLayout(page: ReactElement) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
-    const availableScheduleDates = await getAvailableDates()
     const pokemons = await getPokemons()
     const regions = await getRegions()
 
@@ -61,7 +58,7 @@ export async function getServerSideProps() {
 
       return {
         props: {
-          availableScheduleDates: availableScheduleDates.data,
+          revalidate: 60,
           regions: regions.map((region) => region.name),
           pokemons: pokemonsData.map((pokemon) => ({
             id: pokemon.id,
